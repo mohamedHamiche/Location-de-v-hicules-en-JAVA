@@ -1,11 +1,13 @@
 package gestionComptes.Personnel;
 
+import gestionVentes.mapVentes;
 
 public class DirecteurImp extends Salarie implements Directeur{
 	private mapSalarie tableSalarie;
-
-	public DirecteurImp(int id, String mdp, String nom, String prenom, String tel, double salaire) {
-		super(id, mdp, nom, prenom, tel, salaire);
+	private static mapVentes tableVente;
+	
+	public DirecteurImp(int id, String pseudo,String mdp, String nom, String prenom, String tel, double salaire) {
+		super(pseudo, mdp, nom, prenom, tel, salaire);
 		this.setFct(Fonction.Directeur);
 		this.tableSalarie =new mapSalarie();
 	}
@@ -22,8 +24,10 @@ public class DirecteurImp extends Salarie implements Directeur{
 
 	@Override
 	public void licencier(Salarie s) {
-		this.tableSalarie.deleteSalarie(s);	
-		
+		if(!s.equals(this)){
+			this.tableSalarie.deleteSalarie(s);	
+		}
+		//le directeur ne peut pas se licencier lui meme		
 	}
 
 	@Override
@@ -40,6 +44,10 @@ public class DirecteurImp extends Salarie implements Directeur{
 	@Override
 	public void displayTableSalarie() {
 		this.tableSalarie.display();
+	}
+
+	public static mapVentes getTableVente() {
+		return tableVente;
 	}
 
 	

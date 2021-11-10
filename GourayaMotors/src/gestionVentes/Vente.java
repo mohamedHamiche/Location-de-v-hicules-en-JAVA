@@ -3,11 +3,65 @@ import gestionComptes.Clients.Client;
 import gestionComptes.Personnel.Vendeur;
 import gestionVehicules.Vehicule;
 public class Vente {
+	private int id;
 	private Client client;
 	private Vendeur vendeur;
 	private Vehicule vehicule; 
 	private String dateVente;
 	private double prixVente;
-	private String Options; 
+	private String options;
+	public Vente(Client client, Vendeur vendeur, Vehicule vehicule, String dateVente, double prixVente,
+			String options) {		
+		this.client = client;
+		this.vendeur = vendeur;
+		this.vehicule = vehicule;
+		this.dateVente = dateVente;
+		this.prixVente = prixVente;
+		this.options = options;
+	}
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	public Vendeur getVendeur() {
+		return vendeur;
+	}
+	public void setVendeur(Vendeur vendeur) {
+		this.vendeur = vendeur;
+	}
+	public Vehicule getVehicule() {
+		return vehicule;
+	}
+	public void setVehicule(Vehicule vehicule) {
+		this.vehicule = vehicule;
+	}
+	public String getDateVente() {
+		return dateVente;
+	}
+	public void setDateVente(String dateVente) {
+		this.dateVente = dateVente;
+	}
+	public double getPrixVente() {
+		return prixVente;
+	}
+	public void setPrixVente(double prixVente) {
+		this.prixVente = prixVente;
+	}
+	public String getOptions() {
+		return options;
+	}
+	public void setOptions(String options) {
+		this.options = options;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	//getters setters
+	
 }

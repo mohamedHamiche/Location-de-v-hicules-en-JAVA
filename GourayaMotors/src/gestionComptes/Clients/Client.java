@@ -4,8 +4,8 @@ import gestionComptes.Personne;
 
 public class Client extends Personne{
 
-	public Client(int id, String mdp, String nom, String prenom, String tel) {
-		super(id, mdp, nom, prenom, tel);
+	public Client(String pseudo, String mdp, String nom, String prenom, String tel) {
+		super(mapClients.getNextID(),pseudo, mdp, nom, prenom, tel);
 		
 	}
 	//peut voir le catalogue liste de vehicules a vendre

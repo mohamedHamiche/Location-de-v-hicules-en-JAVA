@@ -1,14 +1,16 @@
 package gestionComptes;
 
 public abstract class Personne {
-	private int id;
+	private final int id;
+	private String pseudo;
 	private String mdp;
 	private String nom, prenom;
 	private String tel;
 	
-	public Personne(int id, String mdp, String nom, String prenom, String tel) {
+	public Personne(int id, String pseudo,String mdp, String nom, String prenom, String tel) {
 		super();
 		this.id = id;
+		this.pseudo=pseudo;
 		this.mdp = mdp;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -18,9 +20,7 @@ public abstract class Personne {
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public String getMdp() {
 		return mdp;
 	}
@@ -47,4 +47,10 @@ public abstract class Personne {
 	}
 	//se connecter se deconnecter
 	//creer un compte
+	public String getPseudo() {
+		return pseudo;
+	}
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
 }

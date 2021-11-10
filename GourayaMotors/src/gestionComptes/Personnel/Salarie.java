@@ -7,8 +7,8 @@ public abstract class Salarie extends Personne{
 	private double salaire;
 	
 	
-	public Salarie(int id, String mdp, String nom, String prenom, String tel, double salaire) {
-		super(id, mdp, nom, prenom, tel);		
+	public Salarie(String pseudo, String mdp, String nom, String prenom, String tel, double salaire) {		
+		super( mapSalarie.getNextID(), pseudo ,mdp, nom, prenom, tel);		
 		this.salaire=salaire;
 	}
 	

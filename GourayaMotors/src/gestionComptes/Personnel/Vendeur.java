@@ -1,10 +1,14 @@
 package gestionComptes.Personnel;
 
+import java.util.ArrayList;
+import gestionVentes.*;
+import gestionVehicules.*;
+import gestionComptes.Clients.*;
 public class Vendeur extends Salarie {
 
 	private int nbVentes;
-	public Vendeur(int id, String mdp, String nom, String prenom, String tel, double salaire) {
-		super(id, mdp, nom, prenom, tel,salaire);		
+	public Vendeur(String pseudo, String mdp, String nom, String prenom, String tel, double salaire) {
+		super(pseudo, mdp, nom, prenom, tel,salaire);		
 		this.setFct(Fonction.Vendeur);	 
 	}
 	public int getNbVentes() {
@@ -22,6 +26,21 @@ public class Vendeur extends Salarie {
 	//vendre vehicule: VendeurX.vendre(vehicule,client): client.acheterVehicule(v)
 	//nbVentes ++
 	
+	
+	//afficher liste des ventes:
+	public void displayVentes() {
+		ArrayList<Vente> r = DirecteurImp.getTableVente().getVentes(this);
+		for(Vente v : r) {
+			System.out.println(v.getId()+" "+v.getVehicule().getMarque()+ " "+v.getClient().getNom()+" "+v.getPrixVente());
+		}
+	}
+	
+	public void vendre(Vehicule v, Client c, double prix, String options) {
+		Vente vente = new Vente(c,this,v,"dateDuJour",prix,options);
+		DirecteurImp.getTableVente().addVente(vente);
+		//c.getListeVehicule().acheter(v);
+		this.nbVentes++;
+	}
 	
 
 	
