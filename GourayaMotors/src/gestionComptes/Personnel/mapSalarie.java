@@ -10,13 +10,17 @@ public class mapSalarie {
 		tableSalarie.put(1, new Vendeur("pseudVend","mdp","name1","prenom1","0005848",1320));
 		tableSalarie.put(2, new Technicien("pseudTech","mdp","name2","prenom2","0005849",1500));
 		tableSalarie.put(3, new Receptionnaire("recep","mdp","name2","prenom3","0005840",1500));
-	}
+	} 
 	
 	public static int getNextID(){
 		return tableSalarie.size();
 	}
 	
-	public Salarie getSalarie(int key) {
+	public static Map<Integer, Salarie> getTableSalarie() {
+		return tableSalarie;
+	}
+
+	public static Salarie getSalarie(int key) {
 		return mapSalarie.tableSalarie.get(key);
 	}
 
@@ -37,6 +41,7 @@ public class mapSalarie {
 		s.setSalaire(s.getSalaire()-marge);
 		mapSalarie.tableSalarie.put(s.getId(), s);
 	}
+	
 	
 	public void display() {
 		for(Integer key : mapSalarie.tableSalarie.keySet()) {
