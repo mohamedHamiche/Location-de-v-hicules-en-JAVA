@@ -6,6 +6,7 @@ import gestionComptes.Database;
 import gestionComptes.Clients.Client;
 import gestionComptes.Clients.mapClients;
 
+//la classe main devra etre renommée et déplacée dans un autre package 
 public class mainPersonnel {
 	
 	//methode a deplacer dans une autre classe mais laquelle ?
