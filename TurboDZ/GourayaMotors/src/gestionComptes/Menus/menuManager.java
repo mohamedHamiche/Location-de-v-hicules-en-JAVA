@@ -14,7 +14,7 @@ public class menuManager implements menu {
 	}
 
 
-	public Manager autentification() {			
+	public Manager authentification() {			
 		Database.getTableSalarie();
 		Salarie s=mapSalarie.getSalarie(menuManager.pseudo,menuManager.mdp);
 		if(s!=null) {
@@ -30,7 +30,14 @@ public class menuManager implements menu {
 
 	@Override
 	public void afficheMenu() {
-		// TODO Auto-generated method stub
+		System.out.println("1.Liste des salaries");
+		System.out.println("2.Liste des clients");
+		System.out.println("3.Liste des vehicules-catalogue");
+		System.out.println("4.Ajouter un salarié");//embaucher
+		System.out.println("41.Augmenter un salaire");
+		System.out.println("42.Diminuer un salaire");
+		System.out.println("4.Supprimer un salarié");//licencier
+		System.out.println("5.Ajouter un vehicule");
 		
 	}
 	

@@ -3,12 +3,16 @@ package gestionComptes.Clients;
 import java.util.HashMap;
 import java.util.Map;
 
+import gestionComptes.Personnel.Vendeur;
+
 
 public class mapClients {
 	private static Map<Integer, Client> tableClient;
 
 	public mapClients() {
 		mapClients.tableClient = new HashMap<Integer, Client>();
+		tableClient.put(1, new Client("client1","mdp","CR7","ronaldo","055471055"));
+		//charger le fichier des clients
 	}
 	
 	public static int getNextID(){
@@ -32,6 +36,16 @@ public class mapClients {
 		for(Integer key : mapClients.tableClient.keySet()) {
 			Client t = mapClients.tableClient.get(key);
 			if(t.getPseudo().equals(pseudo) && t.getMdp().equals(mdp)) {
+				r=t;
+			}
+		}
+		return r;
+	}
+	public static Client getClient(String pseudo) {
+		Client r=null;
+		for(Integer key : mapClients.tableClient.keySet()) {
+			Client t = mapClients.tableClient.get(key);
+			if(t.getPseudo().equals(pseudo)) {
 				r=t;
 			}
 		}

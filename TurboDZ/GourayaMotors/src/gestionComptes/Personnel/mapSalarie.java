@@ -10,6 +10,7 @@ public class mapSalarie {
 		tableSalarie.put(1, new Vendeur("vendeur1","mdp","HAMICHE","Mohamed","0005848",1320));
 		tableSalarie.put(2, new Technicien("tech1","mdp","CHELLAGHA","Lamine","0005849",1500));
 		tableSalarie.put(3, new Receptionnaire("recep","mdp","FERROUKHI","Nail","0005840",1500));
+		//charger le fichier des salaries
 	} 
 	
 	public static int getNextID(){

@@ -1,9 +1,11 @@
 package gestionComptes.Clients;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import gestionComptes.Personne;
 import gestionVehicules.Vehicule;
+import gestionVehicules.mapVehiculesAV;
 import gestionEntretiens.*;
 import gestionComptes.Personnel.Receptionnaire;
 import gestionComptes.Personnel.Technicien;
@@ -38,7 +40,12 @@ public class Client extends Personne{
 	}
 	
 	//un client demande entretien: creation d'une fiche d'entretien pour le vehicule concerné à la date voulue
-	public void demandeEntretien(Vehicule v, String dateE, String description) {		
+	public void demandeEntretien(int index, String dateE, String description) {	
+		Vehicule v=null;
+		v=this.listeV.get(index);
+		if(v==null) {
+			System.out.println("Erreur le vehicule souhaité n'existe pas !");			
+		}
 		Entretien e = new Entretien(v,this,dateE,description); 
 		mapEntretien.addEntretien(e);
 		Technicien t=Receptionnaire.choixTech();
@@ -46,13 +53,33 @@ public class Client extends Personne{
 			Receptionnaire.transmetEntretien(e,t);
 		}
 		
-		//si c'est null quand est ce qu'il sera transmit ?
+		//si c'est null quand est ce qu'il sera transmit ? le receptionaire le fera 
 	}
 	
-	//Methode: ajouter vehicule a listeV: v devra etre reccupere depuis un formulaire  
-	public void addV(Vehicule v) {
+	public static String lireChaine() {
+		String chaine=null;
+			Scanner sai_chaine = new Scanner(System.in);
+			chaine = sai_chaine.next();
+		
+		return chaine;
+	}
+	public void addV() {
+		System.out.println("Ajout d'un vehicule client");
+		System.out.println("Donnez la marque");
+		String marque=lireChaine();
+		System.out.println("Donnez le modele");
+		String modele=lireChaine();
+		Vehicule v=new Vehicule(marque,modele);
+		
 		this.listeV.add(v);
 	}
 	
+	public void afficherMesVehicules() {	
+		int index=1;
+		for(Vehicule v : this.listeV) {
+			System.out.println(index+" "+v.getMarque()+ " "+v.getModele());
+		}		
+		
+	}
 }
  

@@ -1,5 +1,7 @@
 package gestionEntretiens;
 
+import java.io.BufferedOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +14,7 @@ public class  mapEntretien {
 
 	public mapEntretien() {
 		mapEntretien.tableEntretien = new HashMap<Integer, Entretien>();
+		//charger fichier des entretien
 	}
 
 	public Map<Integer, Entretien> getTableEntretien() {
@@ -36,4 +39,7 @@ public class  mapEntretien {
 	public static void deleteEntretien(Entretien e) {
 		tableEntretien.remove(e.getId());
 	}
+	public void ecrireFichier(Entretien e){
+		
+	} 
 }

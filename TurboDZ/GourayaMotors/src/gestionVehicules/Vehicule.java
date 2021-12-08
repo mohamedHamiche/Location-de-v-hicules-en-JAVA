@@ -5,6 +5,13 @@ public class Vehicule {
 	private String marque, modele;
 	private TypeV type;
 	private double prixBase;
+	//constructeur pour les vehicules ajoutés par les clients
+	public Vehicule(String marque, String modele) {
+		this.id=-1;
+		this.marque = marque;
+		this.modele = modele;		
+	}
+	//constructeur pour les vehicules du catalogue 
 	public Vehicule(String marque, String modele, TypeV type, double prixBase) {
 		this.id = mapVehiculesAV.getNextID();
 		this.marque = marque;

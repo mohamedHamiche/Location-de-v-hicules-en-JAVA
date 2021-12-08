@@ -5,14 +5,13 @@ import java.util.Map;
 
 
 
-
 public class mapVehiculesAV {
-	//hashmap 
-	//ajouter supprimer
+	
 	private static Map<Integer, Vehicule> tableVehicule;
 
 	public mapVehiculesAV() {
-		mapVehiculesAV.tableVehicule = new HashMap<Integer, Vehicule>();		
+		mapVehiculesAV.tableVehicule = new HashMap<Integer, Vehicule>();	
+		
 	}
 	
 	public static int getNextID(){

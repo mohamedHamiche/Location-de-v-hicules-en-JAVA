@@ -15,7 +15,7 @@ public class menuVendeur implements menu{
 	}
 
 
-	public boolean autentification() {			
+	public boolean authentification() {			
 		Database.getTableSalarie();
 		Salarie s=mapSalarie.getSalarie(menuVendeur.pseudo,menuVendeur.mdp);
 		if(s!=null) {

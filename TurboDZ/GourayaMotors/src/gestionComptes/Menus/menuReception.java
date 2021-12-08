@@ -11,14 +11,15 @@ import gestionEntretiens.Etat;
 public class menuReception implements menu{
 	private static String pseudo,mdp;			
 	private static Receptionnaire recep;
+	
 	public menuReception(String pseudo, String mdp) {		
 		menuReception.pseudo = pseudo;
 		menuReception.mdp = mdp;			
-		recep=autentification();
+		recep=authentification();
 	}
 
 
-	public Receptionnaire autentification() {			
+	public Receptionnaire authentification() {			
 		Database.getTableSalarie();
 		Salarie s=mapSalarie.getSalarie(menuReception.pseudo,menuReception.mdp);
 		

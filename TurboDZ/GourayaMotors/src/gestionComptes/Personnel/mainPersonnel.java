@@ -68,13 +68,7 @@ public class mainPersonnel {
 		Database.getTableSalarie().display();
 		
 		
-		/*le formulaire suivant n'est pas terminé (il reste beaucoup d'ameliorations)
-			vous pouvez cependant, voir la liste des salariés y compris le manager qui..
-			sera directement affichée à l'execution.
-			
-			vous pouvez egalement vous connecter en tant que salarié pour l'instant
-			les mdp et pseudo seront joints dans un fichier text 
-		*/
+		
 		
 		int choix=0; //se connecter ou creer un compte
 		int choixSession=0;//type d'utilisateur client,vendeur,...		
@@ -101,7 +95,7 @@ public class mainPersonnel {
 				switch(choixSession) {
 					case 1:
 						menuManager menuManag =new menuManager(pseudo,mdp);
-						if(menuManag.autentification()!= null) {														
+						if(menuManag.authentification()!= null) {														
 								System.out.println("Chargement du menu manager ...");															
 								menuManag.afficheMenu();								
 							}
@@ -109,7 +103,7 @@ public class mainPersonnel {
 						break;
 					case 2:
 						menuVendeur menuVend =new menuVendeur(pseudo,mdp);
-						if(menuVend.autentification()== true) {							
+						if(menuVend.authentification()== true) {							
 							
 								System.out.println("Chargement du menu vendeur ...");															
 								menuVend.afficheMenu();
@@ -119,7 +113,7 @@ public class mainPersonnel {
 						break;
 					case 3:
 						menuReception menuRecep =new menuReception(pseudo,mdp);
-						if(menuRecep.autentification()!=null) {							
+						if(menuRecep.authentification()!=null) {							
 							
 								System.out.println("Chargement du menu receptionnaire ...");															
 								menuRecep.afficheMenu();
@@ -129,7 +123,7 @@ public class mainPersonnel {
 						break;
 					case 4:
 						menuClient menuCli =new menuClient(pseudo,mdp);
-						if(menuCli.autentification()!= null) {							
+						if(menuCli.authentification()!= null) {							
 							
 								System.out.println("Chargement du menu client ...");															
 								menuCli.afficheMenu();
@@ -139,7 +133,27 @@ public class mainPersonnel {
 						break;
 				}
 				break;
-			
+			//creation d'un compte client
+			case 2:
+				System.out.println("2.Création d'un compte client :");
+				System.out.println("Saisissez votre nom :");
+				String nom=lireChaine();
+				System.out.println("Saisissez votre prenom :");
+				String prenom=lireChaine();
+				System.out.println("Saisissez votre numéro de telephone :");
+				String tel=lireChaine();
+				System.out.println("Definir votre pseudo :");
+				String NewPseudo=lireChaine();
+				System.out.println("Definir votre mot de passe :");
+				String NewMdp=lireChaine();
+				if(mapClients.getClient(NewPseudo)==null) {
+					mapClients.addClient(new Client(NewPseudo,NewMdp,nom,prenom,tel));
+					//enregistrer dans le fichier des clients
+					System.out.println("Compte crée avec succés");
+				}else {
+					System.out.println("Pseudo déja existant");
+				}
+				break;
 						
 				
 		}
