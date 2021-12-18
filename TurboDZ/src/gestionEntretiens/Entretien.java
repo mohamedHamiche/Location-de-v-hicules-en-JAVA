@@ -27,9 +27,16 @@ public class Entretien {
 		this.client = client;
 		this.etat=Etat.EnCours;
 		this.dateE = dateE;
-		this.description = description;		
+		this.description = description;				
 	}
-
+	public Entretien(Entretien oldE) {
+		this.id=oldE.getId();
+		this.v = oldE.v;
+		this.client = oldE.client;		
+		this.dateE = oldE.dateE;
+		this.description = oldE.description;		
+		
+	}
 	public Vehicule getV() {
 		return v;
 	}

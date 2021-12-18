@@ -37,27 +37,28 @@ public class mapVentes {
 		return r;
 	}
 	
-	//retourne les ventes par Vendeur
-	public static ArrayList<Vente> getVentes(Vendeur vd) {
-		ArrayList<Vente> r = new ArrayList<Vente>();	
+
+	public static void displayVentes(Vendeur vd) {		
 		for(Integer key : tableVente.keySet()) {			
 			Vente v = tableVente.get(key);
 			if(v.getVendeur().getId() == vd.getId()) {
-				r.add(v);				
+				System.out.println("client: "+v.getClient().getPseudo());
+				System.out.println("vendeur: "+v.getVendeur().getPseudo());
+				System.out.println("date: "+v.getDateVente());
+				System.out.println("prix: "+v.getPrixVente());
 			}		
-		}
-		return r;
+		}		
 	}
-	//retourne les ventes par Vehicule //on rajoutera par Type apres
-	public static ArrayList<Vente> getVentes(String marque) {
-		ArrayList<Vente> r = new ArrayList<Vente>();	
+	public static void displayVentes(String marque) {		
 		for(Integer key : tableVente.keySet()) {			
 			Vente v = tableVente.get(key);
 			if(v.getVehicule().getMarque().equals(marque)) {
-				r.add(v);				
+				System.out.println("client: "+v.getClient().getPseudo());
+				System.out.println("vendeur: "+v.getVendeur().getPseudo());
+				System.out.println("date: "+v.getDateVente());
+				System.out.println("prix: "+v.getPrixVente());
 			}		
-		}
-		return r;
+		}		
 	}
 
 	public static void addVente(Vente v) {

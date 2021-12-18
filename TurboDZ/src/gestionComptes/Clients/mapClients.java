@@ -3,7 +3,8 @@ package gestionComptes.Clients;
 import java.util.HashMap;
 import java.util.Map;
 
-import gestionComptes.Personnel.Vendeur;
+
+import gestionVehicules.Vehicule;
 
 
 public class mapClients {
@@ -11,7 +12,15 @@ public class mapClients {
 
 	public mapClients() {
 		mapClients.tableClient = new HashMap<Integer, Client>();
-		tableClient.put(1, new Client("client1","mdp","CR7","ronaldo","055471055"));
+		Client client1=new Client("client1","mdp","CR7","ronaldo","055471055");
+		client1.addV(new Vehicule("Porshe","Macan S"));
+		client1.addV(new Vehicule("Subaru","Impreza"));
+		tableClient.put(1, client1);
+		Client client2=new Client("client2","mdp","Khani","Hossein","070001099");
+		client2.addV(new Vehicule("Lamborgini","Urus"));
+		client2.addV(new Vehicule("VW","Passat"));
+		tableClient.put(2, client2); 
+		
 		//charger le fichier des clients
 	}
 	
@@ -50,5 +59,12 @@ public class mapClients {
 			}
 		}
 		return r;
+	}
+	public static void display() {
+		System.out.println("-------------- Liste des clients -----------");
+		for(Integer key : mapClients.tableClient.keySet()) {
+			Client c = mapClients.tableClient.get(key);
+			System.out.println(c.getId()+" "+c.getNom()+" "+ c.getPrenom()+" "+c.getTel());
+		}
 	}
 }

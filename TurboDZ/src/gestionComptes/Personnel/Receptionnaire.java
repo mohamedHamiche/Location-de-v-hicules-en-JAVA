@@ -25,6 +25,7 @@ public class Receptionnaire extends Salarie {
 		return lesEntretiens;
 	}
 	
+	//cette methode retourne le technicien qui va prendre en charge l'entretien suivant
 	public static Technicien choixTech() {
 		Technicien t,tMax=null;
 		int max = 0;
@@ -38,24 +39,25 @@ public class Receptionnaire extends Salarie {
 				}
 			}
 		}
-		
+		//retourne celui qui a la disponibilité maximale : moins de charge de travail
 		return tMax;
 	}
-	//bien verifier que tMax est non null avant de transmettre 
+	
+	//attribuer l'entreten e au technicien t
 	public static void transmetEntretien(Entretien e,Technicien t) {
 		t.ajoutEntretien(e);
 	}
 	
 	public void afficherEntretiens(Etat e) {
-		for(int key : lesEntretiens.getTableEntretien().keySet()) {
+		for(int key : mapEntretien.getTableEntretien().keySet()) {
 			Entretien ent = mapEntretien.getEntretien(key);
 			if(ent.getEtat()==e)
 			{
-				System.out.println(ent.getId()+" ------------------------------------");
+				System.out.println("-----------------------"+(ent.getId()+1)+" -------------");
 				System.out.println("Infos Client: ");
-				System.out.println(ent.getClient().getNom()+" "+ent.getClient().getPrenom()+" "+ent.getClient().getTel());
+				System.out.println("	"+ent.getClient().getNom()+" "+ent.getClient().getPrenom()+" "+ent.getClient().getTel());
 				System.out.println("Infos Vehicule: ");
-				System.out.println(ent.getV().getId()+" "+ent.getV().getMarque()+" "+ent.getV().getModele());
+				System.out.println("	"+ent.getV().getMarque()+" "+ent.getV().getModele());
 				System.out.println("Description: \n"+ent.getDescription());
 				System.out.println("Rapport du technicien: "+ent.getRapport());
 				System.out.println("Date entrée: "+ent.getDateE()+"\nDate sortie: "+ent.getDateS());				

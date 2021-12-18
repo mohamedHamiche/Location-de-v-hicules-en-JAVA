@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 import gestionEntretiens.Entretien;
 import gestionEntretiens.Etat;
+import gestionVehicules.Vehicule;
 
 
 
 public class Technicien extends Salarie {
-	//liste des entretiens a effectuer --- afficher ajouter valider
-		//reparer vehicule: entretien.etat=pret
+
 	//dispo: le nombre d'entretiens qu'il peut recevoir en plus
 	private ArrayList<Entretien> listeE; 
 	private int dispo;
@@ -24,7 +24,7 @@ public class Technicien extends Salarie {
 	}
 
 	public ArrayList<Entretien> getListeE() {
-		return listeE;
+		return this.listeE;
 	}
 
 	public void setListeE(ArrayList<Entretien> listeE) {
@@ -50,17 +50,18 @@ public class Technicien extends Salarie {
 		}
 	}
 	
-	public void validerEntretien(Entretien e) {
-		e.setEtat(Etat.Termine);
-		try (Scanner scanner = new Scanner(System.in)) {
-			String rapport = scanner.nextLine();
-			e.setRapport(rapport);
-		}
-		this.listeE.remove(e);
-		//receptionnaire.notifierClient//setTarif
+	public void supprimerEntretien(int key) {				
+		this.listeE.remove(key);		
 	}
 	
-	//public void display(ArrayList<Entretien>){};
+	public void displayEntretiens() {
+		int index=1;
+		for(Entretien e : this.listeE) {
+			System.out.println(index+" "+e.getV().getMarque()+ " "+e.getV().getModele());
+			System.out.println("     Date entrée:"+e.getDateE());
+			System.out.println("     Description:"+e.getDescription());
+		}		
+	}
 	
 	
 	

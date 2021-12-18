@@ -1,12 +1,11 @@
 package gestionEntretiens;
 
-import java.io.BufferedOutputStream;
-import java.io.ObjectOutputStream;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import gestionComptes.Personnel.Salarie;
-import gestionComptes.Personnel.mapSalarie;
+import gestionComptes.Clients.Client;
+
 
 
 public class  mapEntretien {
@@ -17,7 +16,7 @@ public class  mapEntretien {
 		//charger fichier des entretien
 	}
 
-	public Map<Integer, Entretien> getTableEntretien() {
+	public static Map<Integer, Entretien> getTableEntretien() {
 		return tableEntretien;
 	}
 
@@ -39,7 +38,18 @@ public class  mapEntretien {
 	public static void deleteEntretien(Entretien e) {
 		tableEntretien.remove(e.getId());
 	}
-	public void ecrireFichier(Entretien e){
-		
-	} 
+	
+	public static void updateEntretien(Entretien e) {
+		tableEntretien.replace(e.getId(), e);
+	}
+	
+	public static void displayEtat(Client cli) {
+		for(Integer key : mapEntretien.getTableEntretien().keySet()) {
+			Entretien e= mapEntretien.getEntretien(key);
+			if(e.getClient().getId()==cli.getId()) {
+				System.out.println(e.getId()+1+" "+e.getV().getMarque()+" "+e.getV().getModele()+" "+e.getEtat().toString()+" "+e.getDateS()+" "+e.getTarif());
+			}			
+		}
+	}
+
 }
