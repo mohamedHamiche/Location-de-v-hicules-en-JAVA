@@ -18,10 +18,9 @@ public abstract class menus {
 		return choix;
 	}
 	protected static float lireFloat() {
-		float x=0;
-		Scanner sai_choix = new Scanner(System.in);
-		x = sai_choix.nextFloat();
-		
+		float x;
+		Scanner sai_x = new Scanner(System.in);
+		x = sai_x.nextFloat();		
 		return x;
 	}
 	

@@ -13,9 +13,9 @@ public class Vente {
 	private double prixVente;
 	private String options;
 		
-	public Vente(int id, Client client, Vendeur vendeur, Vehicule vehicule, String dateVente, double prixVente,
+	public Vente(Client client, Vendeur vendeur, Vehicule vehicule, String dateVente, double prixVente,
 			String options) {
-		Vente.id=id;
+		Vente.id=mapVentes.getNextID();
 		this.client = client;
 		this.vendeur = vendeur;
 		this.vehicule = vehicule;

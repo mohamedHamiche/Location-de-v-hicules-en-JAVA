@@ -7,9 +7,10 @@ public class mapSalarie {
 	
 	public mapSalarie() {
 		mapSalarie.tableSalarie = new HashMap<Integer, Salarie>();
-		tableSalarie.put(1, new Vendeur("vendeur1","mdp","HAMICHE","Mohamed","0005848",1320));
-		tableSalarie.put(2, new Technicien("tech1","mdp","CHELLAGHA","Lamine","0005849",1500));
-		tableSalarie.put(3, new Receptionnaire("recep","mdp","FERROUKHI","Nail","0005840",1500));
+		tableSalarie.put(1, new Manager(1,"manager","mdp","GILBERT","Hugo","0662102202",1900));
+		tableSalarie.put(2, new Vendeur("vendeur1","mdp","HAMICHE","Mohamed","000215848",1700));
+		tableSalarie.put(3, new Technicien("tech1","mdp","CHELLAGHA","Lamine","000510849",1700));
+		tableSalarie.put(4, new Receptionnaire("recep","mdp","FERROUKHI","Nail","002505840",1700));
 		//charger le fichier des salaries
 	} 
 	
@@ -51,7 +52,18 @@ public class mapSalarie {
 		mapSalarie.tableSalarie.remove(key);
 	}
 	
-	
+	public static void updateNbVentes(int key) {
+		Vendeur oldVendeur=(Vendeur)tableSalarie.get(key);	
+		if(oldVendeur!=null) {
+			Vendeur newVendeur = 
+					new Vendeur(oldVendeur.getId(),oldVendeur.getPseudo(),oldVendeur.getMdp(),
+								oldVendeur.getNom(),oldVendeur.getPrenom(),oldVendeur.getTel(),oldVendeur.getSalaire());
+					tableSalarie.replace(key, newVendeur);
+		}
+		else {
+			System.out.println("Erreur : vendeur non trouvé");
+		}
+	}
 	
 	public static void display() {
 		System.out.println("-------------- Liste des salariés -----------");

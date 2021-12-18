@@ -1,6 +1,6 @@
 package gestionComptes.Menus;
 
-import java.util.Scanner;
+
 
 import gestionComptes.Database;
 import gestionComptes.Clients.mapClients;
@@ -27,7 +27,7 @@ public class menuManager extends menus {
 	public Manager authentification() {			
 		Database.getTableSalarie();
 		Salarie s=mapSalarie.getSalarie(menuManager.pseudo,menuManager.mdp);
-		if(s!=null) {
+		if(s!=null && s.getFct()==Fonction.Manager) {
 					System.out.println("Autentification réussie !");
 					System.out.println("Bienvenue "+s.getNom()+" "+s.getPrenom());
 					return mapSalarie.getManager(s.getId());					
@@ -41,7 +41,7 @@ public class menuManager extends menus {
 	
 	
 	private void afficheMenu() {
-		// TODO Auto-generated method stub		
+		System.out.println("\n----------------------------------");
 		System.out.println("1.Liste des salaries");
 		System.out.println("2.Liste des clients");
 		System.out.println("3.Liste des vehicules-catalogue");

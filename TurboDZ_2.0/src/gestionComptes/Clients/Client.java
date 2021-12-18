@@ -42,7 +42,7 @@ public class Client extends Personne{
 	//un client demande entretien: creation d'une fiche d'entretien pour le vehicule concerné à la date voulue
 	public void demandeEntretien(int index, String dateE, String description) {	
 		Vehicule v=null;
-		v=this.listeV.get(index);
+		v=this.listeV.get(index-1);
 		if(v==null) {
 			System.out.println("Erreur le vehicule souhaité n'existe pas !");			
 		}
@@ -56,16 +56,9 @@ public class Client extends Personne{
 		//si c'est null quand est ce qu'il sera transmit ? le receptionaire le fera 
 	}
 	
-	public static String lireChaine() {
-		String chaine=null;
-			Scanner sai_chaine = new Scanner(System.in);
-			chaine = sai_chaine.next();
-		
-		return chaine;
-	}
-	public void addV(Vehicule v) {
-		
-		this.listeV.add(v);
+	
+	public void addV(Vehicule v) {		
+		this.listeV.add(v);		
 	}
 	
 	public void afficherMesVehicules() {	

@@ -47,11 +47,11 @@ public class Receptionnaire extends Salarie {
 	}
 	
 	public void afficherEntretiens(Etat e) {
-		for(int key : lesEntretiens.getTableEntretien().keySet()) {
+		for(int key : mapEntretien.getTableEntretien().keySet()) {
 			Entretien ent = mapEntretien.getEntretien(key);
 			if(ent.getEtat()==e)
 			{
-				System.out.println(ent.getId()+" ------------------------------------");
+				System.out.println("-----------------------"+ent.getId()+" -------------");
 				System.out.println("Infos Client: ");
 				System.out.println(ent.getClient().getNom()+" "+ent.getClient().getPrenom()+" "+ent.getClient().getTel());
 				System.out.println("Infos Vehicule: ");

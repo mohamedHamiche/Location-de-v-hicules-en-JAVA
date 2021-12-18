@@ -1,14 +1,14 @@
 package gestionComptes.Menus;
 
-import java.util.Scanner;
 
 import gestionComptes.Database;
-import gestionComptes.Clients.Client;
-import gestionComptes.Clients.mapClients;
+import gestionComptes.Personnel.Fonction;
 import gestionComptes.Personnel.Receptionnaire;
 import gestionComptes.Personnel.Salarie;
 import gestionComptes.Personnel.mapSalarie;
+import gestionEntretiens.Entretien;
 import gestionEntretiens.Etat;
+import gestionEntretiens.mapEntretien;
 
 public class menuReception extends menus{
 	private static String pseudo,mdp;			
@@ -26,7 +26,7 @@ public class menuReception extends menus{
 		Database.getTableSalarie();
 		Salarie s=mapSalarie.getSalarie(menuReception.pseudo,menuReception.mdp);
 		
-		if(s!=null) {
+		if(s!=null && s.getFct()==Fonction.Receptionnaire) {
 					System.out.println("Autentification réussie !");
 					System.out.println("Bienvenue "+s.getNom()+" "+s.getPrenom());									
 					return mapSalarie.getReceptionnaire(s.getId());
@@ -45,7 +45,30 @@ public class menuReception extends menus{
 		
 		}		
 	}
-	
+	private void form_maj_entretien(int key) {
+		//on indique le tarif la date de sortie 
+		Entretien oldE = mapEntretien.getEntretien(key);
+		if(oldE!=null) {
+			Entretien newE = new Entretien(oldE);
+			System.out.println("Donnez le tarif du service");
+			float tarif = lireFloat();
+			System.out.println("Donnez la date de sortie");
+			String dateS= lireChaine();				
+			newE.setDateS(dateS);
+			newE.setTarif(tarif);	
+			
+			//sans oublier de changer l'etat à remis
+			newE.setEtat(Etat.Remis);
+			mapEntretien.updateEntretien(newE);
+		}else
+		{System.out.println("Erreur form_maj_entretien : entretien introuvable");	}
+		
+	}
+	public static Receptionnaire getRecep() {
+		return recep;
+	}
+
+
 	private void executeAction(int choix) {		
 		 switch (choix) {
 		 	case -1:
@@ -60,7 +83,12 @@ public class menuReception extends menus{
 			case 3:
 				recep.afficherEntretiens(Etat.Remis);				
 				break;	
-			
+			case 4:
+				//on met à jour la fiche d'entretien correspondante
+				System.out.println("Donnez l'id de la fiche d'entretien");
+				int key = lireChoix();
+				form_maj_entretien(key);				
+				break;
 		
 			default:
 				System.out.println("Choix erroné");
@@ -68,9 +96,12 @@ public class menuReception extends menus{
 		 }
 	}
 	public void afficheMenu() {		
+		System.out.println("\n-------------------------------------------");
 		System.out.println("1.Entretiens en cours");		
 		System.out.println("2.Entretiens terminés (en attente du client)");
-		System.out.println("3.Entretiens finalisés (vehicule remis au client)");				
+		System.out.println("3.Entretiens finalisés (vehicule remis au client)");
+		//4.lorque le client vient recuperer son vehicule
+		System.out.println("4.Finaliser une fiche d'entretien (remise au client)");
 		System.out.println("-1.Deconnexion");
 				 
 	}

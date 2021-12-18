@@ -1,11 +1,8 @@
 package gestionComptes.Menus;
 
-import java.util.Scanner;
-
 import gestionComptes.Clients.Client;
 import gestionComptes.Clients.mapClients;
-import gestionVehicules.Vehicule;
-import gestionVehicules.mapVehiculesAV;
+
 
 public class menuGeneral extends menus{
 	boolean exit;
@@ -23,6 +20,7 @@ public class menuGeneral extends menus{
 				
 	}
 	private void afficheChoixSession() {
+		System.out.println("\n-------------------------------------------");
 		System.out.println("1.Se connecter en tant que Manager");
 		System.out.println("2.Se connecter en tant que Vendeur");
 		System.out.println("3.Se connecter en tant que Receptionnaire");
@@ -30,10 +28,13 @@ public class menuGeneral extends menus{
 		System.out.println("-1.Retour");
 	}
 	private void executeActionConnexion(int choixSession) {
-		System.out.println("Entrez votre Pseudo :");
-		String pseudo=lireChaine();
-		System.out.println("Entrez votre mot de passe :");
-		String mdp=lireChaine();
+		if(choixSession!=-1) {
+			System.out.println("Entrez votre Pseudo :");
+			pseudo=lireChaine();
+			System.out.println("Entrez votre mot de passe :");
+			mdp=lireChaine();
+		}
+		
 		
 		switch(choixSession) {
 		case -1:
@@ -42,23 +43,22 @@ public class menuGeneral extends menus{
 		case 1:
 			menuManager menuManag =new menuManager(pseudo,mdp);
 			if(menuManag.authentification()!= null) {														
-					System.out.println("Chargement du menu manager ...");															
+																				
 					menuManag.executeMenu();								
 				}																		
 			break;
 		case 2:
 			menuVendeur menuVend =new menuVendeur(pseudo,mdp);
-			if(menuVend.authentification()== true) {											
-					System.out.println("Chargement du menu vendeur ...");															
+			if(menuVendeur.getVend()!= null) {											
+																			
 					menuVend.executeMenu();
 				}																						
 						
 			break;
 		case 3:
 			menuReception menuRecep =new menuReception(pseudo,mdp);
-			if(menuRecep.authentification()!=null) {							
+			if(menuReception.getRecep()!=null) {	
 				
-					System.out.println("Chargement du menu receptionnaire ...");															
 					menuRecep.executeMenu();
 				}
 													
@@ -66,9 +66,8 @@ public class menuGeneral extends menus{
 			break;
 		case 4:
 			menuClient menuCli =new menuClient(pseudo,mdp);
-			if(menuCli.authentification()!= null) {							
+			if(menuClient.getCli()!= null) {		
 				
-					System.out.println("Chargement du menu client ...");															
 					menuCli.executeMenu();
 				}													
 			
@@ -83,7 +82,8 @@ public class menuGeneral extends menus{
 		 		exit=true;
 		 		System.out.println("Au revoir !");
 		 		break;
-		 	case 1: 		 		
+		 	case 1:
+		 		retour=false;
 		 		while(!retour) {
 		 			afficheChoixSession();
 		 			choixSession=lireChoix();		 			
@@ -125,8 +125,7 @@ public class menuGeneral extends menus{
 			int choix=lireChoix();
 			executeAction(choix);						
 		
-		}
-		
+		}		
 	}
 	
 	

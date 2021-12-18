@@ -1,16 +1,16 @@
 package gestionComptes.Menus;
 
 
-import java.util.Scanner;
+
 
 import gestionComptes.Database;
 import gestionComptes.Clients.Client;
 import gestionComptes.Clients.mapClients;
-import gestionEntretiens.Etat;
+import gestionEntretiens.mapEntretien;
 import gestionVehicules.Vehicule;
 import gestionVehicules.mapVehiculesAV;
 
-public class menuClient implements menu {
+public class menuClient extends menus {
 	
 	private static String pseudo,mdp;	
 	private static Client cli;
@@ -33,30 +33,21 @@ public class menuClient implements menu {
 					return null;	
 				}			
 		}
-	private static String lireChaine() {
-		String chaine=null;
-			Scanner sai_chaine = new Scanner(System.in);
-			chaine = sai_chaine.next();
-		
-		return chaine;
-	}
-	private static int lireChoix() {
-		int choix=0;
-		Scanner sai_choix = new Scanner(System.in);
-		choix = sai_choix.nextInt();
-		
-		return choix;
-	}
 	
-	@Override
-	public void afficheMenu() {
-		// TODO Auto-generated method stub		
+	
+	public static Client getCli() {
+		return cli;
+	}
+
+	private void afficheMenu(){		
+		System.out.println("\n----------------------------------");
 		System.out.println("1.Voir le catalogue");
-		System.out.println("12.		Filtrer par marque de vehicule");
-		System.out.println("13.		Filtrer par type de vehicule");
+		System.out.println("12. Filtrer par marque de vehicule");
+		System.out.println("13. Filtrer par type de vehicule");
 		System.out.println("2.Mes vehicules");
 		System.out.println("3.Ajouter un vehicule");		
 		System.out.println("4.Demander entretien");
+		System.out.println("5.Voir l'etat de mes demandes");
 		System.out.println("-1.Deconnexion");
 		
 		
@@ -72,8 +63,7 @@ public class menuClient implements menu {
 		return v;
 	}
 	
-	private void form_demande_entretien() {
-		System.out.println("4.Demander entretien");
+	private void form_demande_entretien() {		
 		System.out.println("Entrez l'indice du vehicule:");
 		int index=lireChoix();
 		System.out.println("Entrez la date souhaité");
@@ -94,21 +84,24 @@ public class menuClient implements menu {
 				String marque = lireChaine();
 				mapVehiculesAV.displayCatalogue(marque);			
 				break;	
-			case 13:
-				String type = lireChaine();
+			case 13:				
+				System.out.println("Citadine(1), Berline(2), Limousine(3), Break(4), SUV(5), Compacte(6), Coupe(7), Cabriolet(8)");
+				int type = lireChoix();
 				mapVehiculesAV.displayCatalogue(type);				
 				break;	
 			case 2:
 				cli.afficherMesVehicules();		
 				break;	
-			case 3:
-				System.out.println("3.Ajouter un vehicule");
+			case 3:				
 				Vehicule v=form_ajout_vehicule();
-				cli.addV(v);		
+				cli.addV(v);				
 				break;	
 			case 4:
 				form_demande_entretien();				
-				break;	
+				break;
+			case 5:
+				mapEntretien.displayEtat(cli);				
+				break;
 			default:
 				System.out.println("Choix erroné");
 		 }
